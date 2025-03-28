@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PassionHub - Connect & Chat</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #4a90e2;
+            --secondary-color: #f5f7fa;
+            --text-color: #333;
+            --accent-color: #2c3e50;
+            --border-color: #e1e4e8;
+            --hover-color: #f8f9fa;
+            --online-color: #2ecc71;
+        }
+
+        body {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            background-color: white;
+            padding: 1rem 5%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .main-container {
+            flex: 1;
+            display: flex;
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            gap: 2rem;
+            height: calc(100vh - 120px);
+        }
+
+        .discovery-section {
+            flex: 1;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-section {
+            flex: 1;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .section-header {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .search-bar {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+
+        .filter-tags {
+            padding: 0.5rem 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tag {
+            background-color: var(--secondary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .tag.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .user-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+
+        .user-card {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .user-card:hover {
+            background-color: var(--hover-color);
+        }
+
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            margin-right: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .user-info {
+            flex: 1;
+        }
+
+        .user-name {
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .user-interests {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .chat-list {
+            flex: 1;
+            overflow-y: auto;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .chat-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .chat-item:hover {
+            background-color: var(--hover-color);
+        }
+
+        .chat-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            margin-right: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            position: relative;
+        }
+
+        .online-indicator {
+            width: 10px;
+            height: 10px;
+            background-color: var(--online-color);
+            border-radius: 50%;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            border: 2px solid white;
+        }
+
+        .chat-message-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .message {
+            max-width: 70%;
+            padding: 0.75rem;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .message.received {
+            background-color: var(--secondary-color);
+            align-self: flex-start;
+        }
+
+        .message.sent {
+            background-color: var(--primary-color);
+            color: white;
+            align-self: flex-end;
+        }
+
+        .message-time {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 0.25rem;
+        }
+
+        .chat-input {
+            padding: 1rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            gap: 1rem;
+        }
+
+        .message-input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            resize: none;
+        }
+
+        .send-button {
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .send-button:hover {
+            background-color: #357abd;
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+            }
+
+            .discovery-section, .chat-section {
+                height: 500px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="index.html" class="logo">PassionHub</a>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <!-- Discovery Section -->
+        <div class="discovery-section">
+            <div class="section-header">
+                <h2>Discover People</h2>
+            </div>
+            
+            <div class="search-bar">
+                <input type="text" class="search-input" placeholder="Search by interests, university, or name...">
+            </div>
+
+            <div class="filter-tags">
+                <span class="tag active">All</span>
+                <span class="tag">Tech</span>
+                <span class="tag">Arts</span>
+                <span class="tag">Business</span>
+                <span class="tag">Science</span>
+                <span class="tag">Music</span>
+            </div>
+
+            <div class="user-list">
+                <div class="user-card">
+                    <div class="user-avatar">JD</div>
+                    <div class="user-info">
+                        <div class="user-name">John Doe</div>
+                        <div class="user-interests">Tech, AI, Web Development</div>
+                    </div>
+                </div>
+
+                <div class="user-card">
+                    <div class="user-avatar">AS</div>
+                    <div class="user-info">
+                        <div class="user-name">Alice Smith</div>
+                        <div class="user-interests">Digital Art, Photography</div>
+                    </div>
+                </div>
+
+                <div class="user-card">
+                    <div class="user-avatar">RJ</div>
+                    <div class="user-info">
+                        <div class="user-name">Robert Johnson</div>
+                        <div class="user-interests">Business, Entrepreneurship</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat Section -->
+        <div class="chat-section">
+            <div class="section-header">
+                <h2>Messages</h2>
+            </div>
+
+            <div class="chat-message-area">
+                <div class="chat-header">
+                    <div class="chat-avatar">
+                        JD
+                        <span class="online-indicator"></span>
+                    </div>
+                    <div class="user-info">
+                        <div class="user-name">John Doe</div>
+                        <div class="user-interests">Online</div>
+                    </div>
+                </div>
+
+                <div class="chat-messages">
+                    <div class="message received">
+                        Hi! I saw that you're also interested in AI. What areas are you focusing on?
+                        <div class="message-time">10:30 AM</div>
+                    </div>
+                    
+                    <div class="message sent">
+                        Hey! I'm currently working on machine learning projects, specifically in computer vision. How about you?
+                        <div class="message-time">10:32 AM</div>
+                    </div>
+
+                    <div class="message received">
+                        That's awesome! I'm more into natural language processing. Would love to collaborate on a project!
+                        <div class="message-time">10:33 AM</div>
+                    </div>
+                </div>
+
+                <div class="chat-input">
+                    <textarea class="message-input" placeholder="Type your message..."></textarea>
+                    <button class="send-button">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle active tags
+        document.querySelectorAll('.tag').forEach(tag => {
+            tag.addEventListener('click', () => {
+                document.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
+                tag.classList.add('active');
+            });
+        });
+
+        // Send message on button click or Enter key
+        const messageInput = document.querySelector('.message-input');
+        const sendButton = document.querySelector('.send-button');
+
+        function sendMessage() {
+            const message = messageInput.value.trim();
+            if (message) {
+                const chatMessages = document.querySelector('.chat-messages');
+                const messageElement = document.createElement('div');
+                messageElement.className = 'message sent';
+                messageElement.innerHTML = `
+                    ${message}
+                    <div class="message-time">${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>
+                `;
+                chatMessages.appendChild(messageElement);
+                messageInput.value = '';
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+        }
+
+        sendButton.addEventListener('click', sendMessage);
+
+        messageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>

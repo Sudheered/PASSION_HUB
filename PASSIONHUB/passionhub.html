@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PassionHub - Connect Through Interests</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #4a90e2;
+            --secondary-color: #f5f7fa;
+            --text-color: #333;
+            --accent-color: #2c3e50;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        .navbar {
+            background-color: white;
+            padding: 1rem 5%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .hero {
+            background-color: var(--secondary-color);
+            padding: 8rem 5% 4rem;
+            text-align: center;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #357abd;
+        }
+
+        .features {
+            padding: 4rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--accent-color);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .feature-card h3 {
+            margin: 1rem 0;
+            color: var(--accent-color);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+
+        .communities {
+            padding: 4rem 5%;
+            background-color: var(--secondary-color);
+        }
+
+        .communities h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--accent-color);
+        }
+
+        .community-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .community-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .community-card h3 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background-color: var(--secondary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            color: var(--accent-color);
+        }
+
+        footer {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 2rem 5%;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo">PassionHub</div>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#communities">Communities</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Connect Through Your Passions</h1>
+            <p>Join a community of university students who share your interests. Collaborate, learn, and grow together.</p>
+            <a href="#join" class="cta-button">Join PassionHub</a>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <h2>Why Choose PassionHub?</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">👥</div>
+                <h3>Connect</h3>
+                <p>Find and connect with students who share your interests and passions.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💡</div>
+                <h3>Collaborate</h3>
+                <p>Work together on projects and share ideas in a supportive environment.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Grow</h3>
+                <p>Develop your skills and explore new opportunities with like-minded peers.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="communities" id="communities">
+        <h2>Popular Communities</h2>
+        <div class="community-grid">
+            <div class="community-card">
+                <h3>Tech Innovators</h3>
+                <p>Join fellow tech enthusiasts in discussions about the latest innovations and developments.</p>
+                <div class="tag-list">
+                    <span class="tag">Programming</span>
+                    <span class="tag">AI</span>
+                    <span class="tag">Web Dev</span>
+                </div>
+            </div>
+            <div class="community-card">
+                <h3>Creative Arts</h3>
+                <p>Connect with artists and creators to share your work and get inspired.</p>
+                <div class="tag-list">
+                    <span class="tag">Design</span>
+                    <span class="tag">Photography</span>
+                    <span class="tag">Digital Art</span>
+                </div>
+            </div>
+            <div class="community-card">
+                <h3>Entrepreneurs</h3>
+                <p>Network with student entrepreneurs and share business insights.</p>
+                <div class="tag-list">
+                    <span class="tag">Startups</span>
+                    <span class="tag">Innovation</span>
+                    <span class="tag">Business</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 PassionHub. All rights reserved.</p>
+    </footer>
+</body>
+</html>
