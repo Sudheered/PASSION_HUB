@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passion - Connect, Thrive, Grow Together</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f7;
+            color: #1d1d1f;
+            overflow-x: hidden;
+        }
+        
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 48px;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(90deg, #0066cc, #8c52ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #1d1d1f;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #0066cc;
+        }
+        
+        .cta-button {
+            background: linear-gradient(90deg, #0066cc, #8c52ff);
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 102, 204, 0.4);
+        }
+        
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+            overflow: hidden;
+            background-image: url('/api/placeholder/1920/1080');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 102, 204, 0.8), rgba(140, 82, 255, 0.8));
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            max-width: 800px;
+        }
+        
+        .hero h1 {
+            font-size: 70px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero h2 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hero p {
+            font-size: 22px;
+            max-width: 700px;
+            margin-bottom: 40px;
+            line-height: 1.6;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+        }
+        
+        .secondary-button {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+            padding: 10px 24px;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+        
+        .secondary-button:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .rotating-circles {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            z-index: -1;
+            opacity: 0.3;
+        }
+        
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid white;
+            animation: rotate 30s linear infinite;
+        }
+        
+        .circle:nth-child(1) {
+            width: 800px;
+            height: 800px;
+            animation-duration: 40s;
+        }
+        
+        .circle:nth-child(2) {
+            width: 600px;
+            height: 600px;
+            top: 100px;
+            left: 100px;
+            animation-duration: 30s;
+            animation-direction: reverse;
+        }
+        
+        .circle:nth-child(3) {
+            width: 400px;
+            height: 400px;
+            top: 200px;
+            left: 200px;
+            animation-duration: 20s;
+        }
+        
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .features {
+            padding: 120px 48px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            background-color: white;
+            position: relative;
+        }
+        
+        .features::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('/api/placeholder/2000/1200');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.05;
+        }
+        
+        .section-title {
+            grid-column: 1 / -1;
+            text-align: center;
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 60px;
+            color: #1d1d1f;
+        }
+        
+        .section-title span {
+            background: linear-gradient(90deg, #0066cc, #8c52ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .feature {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .feature:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #0066cc, #8c52ff);
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 24px;
+            font-size: 36px;
+            color: white;
+            box-shadow: 0 8px 16px rgba(0, 102, 204, 0.3);
+        }
+        
+        .feature h3 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        
+        .feature p {
+            font-size: 16px;
+            color: #515154;
+            line-height: 1.6;
+        }
+        
+        .testimonials {
+            padding: 120px 48px;
+            background-color: #f5f5f7;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .testimonials::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 102, 204, 0.05), rgba(140, 82, 255, 0.05));
+            z-index: 0;
+        }
+        
+        .testimonial-cards {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 60px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            max-width: 350px;
+            text-align: left;
+        }
+        
+        .testimonial-quote {
+            font-size: 18px;
+            color: #1d1d1f;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 16px;
+            background-color: #e6e6e6;
+            overflow: hidden;
+        }
+        
+        .author-info h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .author-info p {
+            font-size: 14px;
+            color: #86868b;
+        }
+        
+        .device-showcase {
+            padding: 80px 48px;
+            background-color: white;
+            text-align: center;
+            position: relative;
+        }
+        
+        .devices-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            height: 600px;
+        }
+        
+        .device {
+            position: absolute;
+            border-radius: 20px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+        }
+        
+        .device.phone {
+            width: 220px;
+            height: 440px;
+            top: 80px;
+            left: 15%;
+            z-index: 2;
+            transform: rotate(-5deg);
+        }
+        
+        .device.tablet {
+            width: 400px;
+            height: 550px;
+            top: 25px;
+            left: calc(50% - 200px);
+            z-index: 1;
+        }
+        
+        .device.laptop {
+            width: 600px;
+            height: 360px;
+            top: 120px;
+            right: 10%;
+            z-index: 0;
+            transform: rotate(5deg);
+        }
+        
+        .cta-section {
+            padding: 120px 48px;
+            background: linear-gradient(135deg, #0066cc, #8c52ff);
+            text-align: center;
+            color: white;
+        }
+        
+        .cta-section h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .cta-section p {
+            font-size: 20px;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+        
+        .cta-primary {
+            background-color: white;
+            color: #0066cc;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 100px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+        }
+        
+        .footer {
+            background-color: #1d1d1f;
+            padding: 80px 48px 40px;
+            color: #86868b;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            font-size: 32px;
+            font-weight: 700;
+            background: linear-gradient(90deg, #0066cc, #8c52ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+        }
+        
+        .footer-section {
+            margin-bottom: 40px;
+            min-width: 200px;
+        }
+        
+        .footer-section h3 {
+            color: white;
+            font-size: 18px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #86868b;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 14px;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #333;
+            margin-top: 40px;
+            padding-top: 20px;
+            text-align: center;
+            font-size: 12px;
+        }
+        
+        @media (max-width: 1200px) {
+            .device.phone {
+                left: 5%;
+            }
+            
+            .device.laptop {
+                right: 5%;
+                width: 500px;
+            }
+            
+            .testimonial-cards {
+                flex-wrap: wrap;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 16px 20px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 48px;
+            }
+            
+            .hero h2 {
+                font-size: 24px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .features {
+                padding: 80px 20px;
+            }
+            
+            .section-title {
+                font-size: 32px;
+            }
+            
+            .device.phone {
+                width: 180px;
+                height: 360px;
+                left: 10%;
+            }
+            
+            .device.tablet {
+                width: 300px;
+                height: 400px;
+                left: calc(50% - 150px);
+            }
+            
+            .device.laptop {
+                width: 380px;
+                height: 230px;
+                right: 5%;
+            }
+            
+            .devices-wrapper {
+                height: 450px;
+            }
+            
+            .cta-section h2 {
+                font-size: 36px;
+            }
+            
+            .testimonials, .cta-section {
+                padding: 80px 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            .device.phone {
+                left: calc(50% - 90px);
+                top: 20px;
+                transform: rotate(0);
+            }
+            
+            .device.tablet {
+                display: none;
+            }
+            
+            .device.laptop {
+                left: calc(50% - 165px);
+                top: 280px;
+                transform: rotate(0);
+                width: 330px;
+                height: 200px;
+            }
+            
+            .devices-wrapper {
+                height: 500px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Passion</div>
+        <div class="nav-links">
+            <a href="#">Features</a>
+            <a href="#">Community</a>
+            <a href="#">About</a>
+            <a href="#">Support</a>
+        </div>
+        <a href="login.html"><button class="cta-button">Get Started</button></a>
+    </nav>
+    
+    <section class="hero">
+        <div class="rotating-circles">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+        <div class="hero-content">
+            <h1>Passion</h1>
+            <h2>Connect, Thrive, Grow Together</h2>
+            <p>Discover a new way to share your passions, connect with like-minded individuals, and grow together in a community that celebrates your unique interests.</p>
+            <div class="hero-buttons">
+                <a href="login.html"><button class="cta-button">Join Now</button></a>
+                <button class="secondary-button">Watch Demo</button>
+            </div>
+        </div>
+    </section>
+    
+    <section class="features">
+        <h2 class="section-title">How <span>Passion</span> Works</h2>
+        <div class="feature">
+            <div class="feature-icon">🔍</div>
+            <h3>Connect</h3>
+            <p>Find people who share your interests and passions. Our intelligent matching algorithm helps you discover meaningful connections based on what drives you.</p>
+        </div>
+        <div class="feature">
+            <div class="feature-icon">🌱</div>
+            <h3>Thrive</h3>
+            <p>Share ideas, participate in discussions, and collaborate on projects with your community. Watch your passions flourish in a supportive environment.</p>
+        </div>
+        <div class="feature">
+            <div class="feature-icon">🚀</div>
+            <h3>Grow</h3>
+            <p>Learn from others, gain new perspectives, and expand your horizons. Passion helps you develop your interests into life-changing opportunities.</p>
+        </div>
+    </section>
+    
+    <section class="testimonials">
+        <h2 class="section-title">People <span>Love</span> Passion</h2>
+        <div class="testimonial-cards">
+            <div class="testimonial-card">
+                <p class="testimonial-quote">"Passion helped me connect with others who share my love for sustainable gardening. I've learned so much and even started a local community project!"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">
+                        <img src="p/p4.jpg" alt="User avatar">
+                    </div>
+                    <div class="author-info">
+                        <h4>Sarah J.</h4>
+                        <p>Urban Gardener</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-quote">"I found my coding study group through Passion. We meet virtually every week, and I've improved my skills more in 3 months than in a year on my own."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">
+                        <img src="p/p3.jpg" alt="User avatar">
+                    </div>
+                    <div class="author-info">
+                        <h4>Michael T.</h4>
+                        <p>Software Developer</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-quote">"As an artist, I was looking for inspiration and feedback. The community I found on Passion has been incredibly supportive and helped me grow my craft."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">
+                        <img src="p/p6.jpg" alt="User avatar">
+                    </div>
+                    <div class="author-info">
+                        <h4>Elena R.</h4>
+                        <p>Digital Artist</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="device-showcase">
+        <h2 class="section-title">Available on <span>All</span> Devices</h2>
+        <div class="devices-wrapper" style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+            <div class="device phone" style="max-width: 220px; text-align: center; overflow: hidden;">
+                <img src="p/a5.jpg" alt="Mobile app screenshot" style="width: 100%; height: auto; display: block;">
+            </div>
+            <div class="device tablet" style="max-width: 400px; text-align: center; overflow: hidden;">
+                <img src="p/a4.jpg" alt="Tablet app screenshot" style="width: 100%; height: auto; display: block;">
+            </div>
+            <div class="device laptop" style="max-width: 600px; text-align: center; overflow: hidden;">
+                <img src="p/a3.jpg" alt="Desktop app screenshot" style="width: 100%; height: auto; display: block;">
+            </div>
+        </div>
+    </section>
+    
+    
+    <section class="cta-section">
+        <h2>Start Your Journey Today</h2>
+        <p>Join thousands of others who are connecting, thriving, and growing together. Your passion is waiting to be shared.</p>
+        <a href="login.html"><button class="cta-primary">Join Passion Now</button></a>
+    </section>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">Passion</div>
+                <p>Connect, Thrive, Grow Together</p>
+            </div>
+            <div class="footer-section">
+                <h3>Company</h3>
+                <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Features</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Communities</a></li>
+                    <li><a href="#">Events</a></li>
+                    <li><a href="#">Messaging</a></li>
+                    <li><a href="#">Projects</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Passion. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

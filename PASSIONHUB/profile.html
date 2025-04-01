@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudheendra S S - Personal Profile</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #1e88e5;
+            --light-blue: #bbdefb;
+            --dark-blue: #0d47a1;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+        }
+        
+        * {
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-gray);
+            color: #333;
+        }
+        
+        /* Navigation */
+        .navbar {
+            background-color: var(--dark-blue);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .nav-logo {
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .nav-item {
+            margin-left: 2rem;
+        }
+        
+        .nav-link {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+            color: var(--white);
+            padding: 8rem 0 4rem;
+            text-align: center;
+            margin-top: 60px;
+        }
+        
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--white);
+            margin-bottom: 1.5rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .profile-name {
+            font-size: 2.5rem;
+            margin: 0.5rem 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Cards */
+        .card {
+            background-color: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2.5rem;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-header {
+            background: linear-gradient(to right, var(--primary-blue), #64b5f6);
+            color: var(--white);
+            padding: 1.2rem 1.5rem;
+            font-size: 1.3rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-header i {
+            margin-right: 10px;
+        }
+        
+        .card-body {
+            padding: 1.8rem;
+        }
+        
+        /* Skills */
+        .skill-tag {
+            display: inline-block;
+            background-color: var(--light-blue);
+            color: var(--dark-blue);
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            margin-right: 0.8rem;
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .skill-tag:hover {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+        
+        /* Social Links */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+        
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: var(--white);
+            color: var(--primary-blue);
+            margin: 0 0.7rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            transform: translateY(-5px);
+        }
+        
+        /* Section */
+        .section {
+            margin-top: -60px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(to right, var(--dark-blue), #1a237e);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        /* Projects */
+        .project-card {
+            border: 1px solid var(--light-blue);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover {
+            border-color: var(--primary-blue);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(30, 136, 229, 0.15);
+        }
+        
+        .project-title {
+            color: var(--dark-blue);
+            margin-top: 0;
+            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .project-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-blue);
+        }
+        
+        /* Button */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--dark-blue);
+            transform: translateY(-3px);
+        }
+        
+        /* Posts */
+        .posts-section {
+            margin-top: 4rem;
+        }
+        
+        .posts-title {
+            text-align: center;
+            color: var(--dark-blue);
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+        
+        .compose-post {
+            background-color: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .compose-input {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            resize: none;
+            margin-bottom: 1rem;
+        }
+        
+        .compose-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .compose-buttons {
+            display: flex;
+        }
+        
+        .compose-action {
+            margin-right: 1rem;
+            color: #555;
+            cursor: pointer;
+        }
+        
+        .compose-action i {
+            margin-right: 0.5rem;
+        }
+        
+        .post {
+            background-color: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .post-header {
+            padding: 1.2rem;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .post-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 1rem;
+        }
+        
+        .post-username {
+            font-weight: 600;
+            margin: 0;
+            color: var(--dark-blue);
+        }
+        
+        .post-date {
+            font-size: 0.8rem;
+            color: #777;
+            margin: 0;
+        }
+        
+        .post-content {
+            padding: 1.5rem;
+        }
+        
+        .post-image {
+            width: 100%;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+        
+        .post-actions {
+            padding: 1rem 1.5rem;
+            display: flex;
+            border-top: 1px solid var(--light-gray);
+        }
+        
+        .post-action {
+            margin-right: 1.5rem;
+            color: #555;
+            cursor: pointer;
+        }
+        
+        .post-action i {
+            margin-right: 0.5rem;
+        }
+
+        /* Animation classes */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .slide-up {
+            animation: slideUp 0.8s ease forwards;
+        }
+
+        /* Progress bar */
+        .progress-container {
+            width: 100%;
+            height: 4px;
+            background: var(--light-blue);
+            position: fixed;
+            top: 60px;
+            z-index: 999;
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: var(--dark-blue);
+            width: 0%;
+        }
+
+        /* Animation delays */
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+        
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+        
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+        
+        .delay-4 {
+            animation-delay: 0.8s;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">Sudheendra S S</a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
+                <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+                <li class="nav-item"><a href="#posts" class="nav-link">Posts</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+    </div>
+    
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <img src="p/myphoto.png" alt="Sudheendra S S" class="profile-img fade-in">
+            <h1 class="profile-name fade-in delay-1">Sudheendra S S</h1>
+            <p class="fade-in delay-2">B.E CSE (AIML) | Competitive Programmer | Web Development Enthusiast</p>
+            <div class="social-links">
+                <a href="https://github.com/Sudheered" class="social-link fade-in delay-3"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/sudheendra-s-s-a966b7247/" class="social-link fade-in delay-3"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="social-link fade-in delay-3"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-link fade-in delay-3"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <div class="container section">
+        <!-- About Me Section -->
+        <div class="card slide-up" id="about">
+            <div class="card-header">
+                <i class="fas fa-user"></i> About Me
+            </div>
+            <div class="card-body">
+                <p>
+                    Hello! I'm Sudheendra S S, a final year Computer Science Engineering student specializing in 
+                    Artificial Intelligence and Machine Learning at Sathyabama Institute of Science & Technology, Chennai.
+                    I'm passionate about solving complex problems through code and constantly challenging myself through 
+                    competitive programming contests.
+                </p>
+                <p>
+                    Currently, I'm expanding my skill set by learning web development while maintaining my proficiency
+                    in C++ and algorithmic problem-solving. I strive to combine my knowledge of AI/ML with practical
+                    software development to create innovative solutions.
+                </p>
+            </div>
+        </div>
+        
+        <!-- Education Section -->
+        <div class="card slide-up delay-1">
+            <div class="card-header">
+                <i class="fas fa-graduation-cap"></i> Education
+            </div>
+            <div class="card-body">
+                <h3>Sathyabama Institute of Science & Technology, Chennai</h3>
+                <p>B.E Computer Science Engineering (Artificial Intelligence and Machine Learning)</p>
+                <p><i class="far fa-calendar-alt"></i> 2021 - 2025 (Expected)</p>
+            </div>
+        </div>
+        
+        <!-- Skills Section -->
+        <div class="card slide-up delay-2" id="skills">
+            <div class="card-header">
+                <i class="fas fa-code"></i> Skills
+            </div>
+            <div class="card-body">
+                <div class="skill-tag">C++</div>
+                <div class="skill-tag">Problem Solving</div>
+                <div class="skill-tag">Competitive Programming</div>
+                <div class="skill-tag">Data Structures & Algorithms</div>
+                <div class="skill-tag">Artificial Intelligence</div>
+                <div class="skill-tag">Machine Learning</div>
+                <div class="skill-tag">Web Development</div>
+                <div class="skill-tag">HTML/CSS</div>
+                <div class="skill-tag">JavaScript</div>
+            </div>
+        </div>
+        
+        <!-- Projects Section -->
+        <div class="card slide-up delay-3" id="projects">
+            <div class="card-header">
+                <i class="fas fa-laptop-code"></i> Projects
+            </div>
+            <div class="card-body">
+                <div class="project-card">
+                    <h3 class="project-title">ML-Based Image Classification System</h3>
+                    <p>
+                        Implemented a machine learning model to classify images using convolutional neural networks.
+                        Achieved an accuracy of 92% on test data.
+                    </p>
+                    <a href="#" class="btn">View Project</a>
+                </div>
+                
+                <div class="project-card">
+                    <h3 class="project-title">Competitive Programming Solutions Repository</h3>
+                    <p>
+                        A collection of my solutions to various competitive programming problems from platforms
+                        like Codeforces, LeetCode, and HackerRank.
+                    </p>
+                    <a href="#" class="btn">View Repository</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Posts Section -->
+        <div class="posts-section" id="posts">
+            <h2 class="posts-title fade-in">My Posts</h2>
+            
+            <!-- Compose new post -->
+            <div class="compose-post fade-in">
+                <textarea class="compose-input" placeholder="What's on your mind?" rows="3"></textarea>
+                <div class="compose-actions">
+                    <div class="compose-buttons">
+                        <div class="compose-action"><i class="far fa-image"></i> Add Image</div>
+                        <div class="compose-action"><i class="far fa-file-code"></i> Add Code</div>
+                    </div>
+                    <button class="btn">Post</button>
+                </div>
+            </div>
+            
+            <!-- Posts -->
+            <div class="post slide-up">
+                <div class="post-header">
+                    <img src="p/myphoto.png" alt="Sudheendra S S" class="post-avatar">
+                    <div>
+                        <h4 class="post-username">Sudheendra S S</h4>
+                        <p class="post-date">March 28, 2025</p>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <p>
+                        Just finished implementing a neural network from scratch for my final year project! 
+                        Here's a visualization of how the model performed on the test dataset. 
+                        Really excited about the results! 🚀 #MachineLearning #AI #FinalYearProject
+                    </p>
+                    <img src="p/neuralnetwork.jpg" alt="Neural Network Visualization" class="post-image">
+                </div>
+                <div class="post-actions">
+                    <div class="post-action"><i class="far fa-heart"></i> Like</div>
+                    <div class="post-action"><i class="far fa-comment"></i> Comment</div>
+                    <div class="post-action"><i class="far fa-share-square"></i> Share</div>
+                </div>
+            </div>
+            
+            <div class="post slide-up delay-1">
+                <div class="post-header">
+                    <img src="p/myphoto.png" alt="Sudheendra S S" class="post-avatar">
+                    <div>
+                        <h4 class="post-username">Sudheendra S S</h4>
+                        <p class="post-date">March 20, 2025</p>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <p>
+                        Participated in the CodeForces Round #892 today and solved 4 problems! Made it to the top 500 globally.
+                        Here's a screenshot of my solution to problem D - it uses a greedy approach with binary search.
+                        Anyone else participated in this round? #CompetitiveProgramming #CodeForces #CPP
+                    </p>
+                    <img src="p/contest.jpeg" alt="Code solution screenshot" class="post-image">
+                </div>
+                <div class="post-actions">
+                    <div class="post-action"><i class="far fa-heart"></i> Like</div>
+                    <div class="post-action"><i class="far fa-comment"></i> Comment</div>
+                    <div class="post-action"><i class="far fa-share-square"></i> Share</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Contact Section -->
+        <div class="card slide-up delay-4" id="contact">
+            <div class="card-header">
+                <i class="fas fa-envelope"></i> Contact Me
+            </div>
+            <div class="card-body">
+                <p><strong><i class="far fa-envelope"></i> Email:</strong> sudheendra.s@example.com</p>
+                <p><strong><i class="fas fa-map-marker-alt"></i> Location:</strong> Chennai, India</p>
+                <p>
+                    Feel free to reach out for collaboration opportunities, project discussions,
+                    or just to connect!
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Sudheendra S S. All rights reserved.</p>
+            <p>Made with <i class="fas fa-heart" style="color: #ff6b6b;"></i> and <i class="fas fa-code" style="color: #64b5f6;"></i></p>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script>
+        // Progress bar
+        window.onscroll = function() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("myBar").style.width = scrolled + "%";
+        };
+        
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Animation effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add animation to elements when they come into view
+            const callback = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            };
+            
+            const observer = new IntersectionObserver(callback, {
+                threshold: 0.1
+            });
+            
+            document.querySelectorAll('.card, .post').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>

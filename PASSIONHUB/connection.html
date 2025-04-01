@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passion Hub - Your Connections</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f7;
+            color: #1d1d1f;
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            box-shadow: 0 1px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 600;
+            color: #0066cc;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            margin-left: 30px;
+            color: #1d1d1f;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #0066cc;
+        }
+        
+        .chat-icon {
+            width: 24px;
+            height: 24px;
+            color: #0066cc;
+            cursor: pointer;
+            margin-left: 30px;
+        }
+        
+        main {
+            padding-top: 100px;
+            min-height: 100vh;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-bottom: 60px;
+        }
+        
+        .connection-header {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        h1 {
+            font-size: 38px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            background: linear-gradient(90deg, #0066cc, #5ac8fa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .connection-header p {
+            font-size: 18px;
+            color: #86868b;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .interest-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+        
+        .interest-tag {
+            background-color: #e0f2ff;
+            color: #0066cc;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+        }
+        
+        .interest-tag span {
+            margin-right: 8px;
+        }
+        
+        .remove-tag {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #0066cc;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 12px;
+            line-height: 1;
+        }
+        
+        .profiles-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 0 20px;
+        }
+        
+        .profile-card {
+            background-color: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .profile-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+        
+        .profile-header {
+            position: relative;
+            height: 120px;
+            background: linear-gradient(150deg, #0066cc, #5ac8fa);
+        }
+        
+        .profile-avatar {
+            position: absolute;
+            bottom: -40px;
+            left: 20px;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 4px solid white;
+            background-color: #e0e0e0;
+            object-fit: cover;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .profile-content {
+            padding: 50px 20px 20px;
+        }
+        
+        .profile-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .profile-bio {
+            font-size: 14px;
+            color: #86868b;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .profile-interests {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .profile-interest {
+            background-color: #f5f5f7;
+            color: #1d1d1f;
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 12px;
+        }
+        
+        .connect-button {
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+        
+        .connect-button:hover {
+            background-color: #004c99;
+        }
+        
+        .chat-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+            background-color: transparent;
+            color: #0066cc;
+            border: 1px solid #0066cc;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+        
+        .chat-button:hover {
+            background-color: #e0f2ff;
+        }
+        
+        .chat-button svg {
+            width: 14px;
+            height: 14px;
+            margin-right: 6px;
+        }
+        
+        footer {
+            background-color: white;
+            text-align: center;
+            padding: 30px 20px;
+            color: #86868b;
+            font-size: 14px;
+        }
+        
+        /* Chat Modal */
+        .chat-modal {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 320px;
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            z-index: 1000;
+            display: none;
+        }
+        
+        .chat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: linear-gradient(90deg, #0066cc, #5ac8fa);
+            color: white;
+        }
+        
+        .chat-title {
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        
+        .chat-title span {
+            margin-left: 8px;
+        }
+        
+        .chat-close {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 20px;
+        }
+        
+        .chat-messages {
+            height: 300px;
+            padding: 15px;
+            overflow-y: auto;
+        }
+        
+        .message {
+            margin-bottom: 15px;
+            max-width: 80%;
+        }
+        
+        .message-received {
+            margin-right: auto;
+        }
+        
+        .message-sent {
+            margin-left: auto;
+        }
+        
+        .message-content {
+            padding: 10px 15px;
+            border-radius: 18px;
+            font-size: 14px;
+        }
+        
+        .message-received .message-content {
+            background-color: #f0f0f0;
+        }
+        
+        .message-sent .message-content {
+            background-color: #0066cc;
+            color: white;
+        }
+        
+        .chat-input {
+            display: flex;
+            padding: 10px 15px 15px;
+            border-top: 1px solid #f0f0f0;
+        }
+        
+        .chat-input input {
+            flex-grow: 1;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 20px;
+            background-color: #f5f5f7;
+            font-size: 14px;
+            outline: none;
+        }
+        
+        .chat-input button {
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            margin-left: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 32px;
+            }
+            
+            .connection-header p {
+                font-size: 16px;
+            }
+            
+            .nav-links a {
+                display: none;
+            }
+            
+            .profiles-container {
+                grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            }
+            
+            .chat-modal {
+                width: 100%;
+                height: 100%;
+                bottom: 0;
+                right: 0;
+                border-radius: 0;
+            }
+            
+            .chat-messages {
+                height: calc(100vh - 132px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <a href="profile.html" class="logo">Passion Hub</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="profile.html">Myprofile</a>
+                <a href="#">Community</a>
+                <svg class="chat-icon" onclick="toggleChatModal()" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <section class="connection-header">
+            <h1>Your Perfect Connections</h1>
+            <p>Based on your selected interests, we've found these like-minded individuals for you to connect with. Start your journey to thrive and grow together!</p>
+            
+            <div class="interest-tags">
+                <div class="interest-tag">
+                    <span>Technology</span>
+                    <div class="remove-tag">×</div>
+                </div>
+                <div class="interest-tag">
+                    <span>Art & Design</span>
+                    <div class="remove-tag">×</div>
+                </div>
+                <div class="interest-tag">
+                    <span>Music</span>
+                    <div class="remove-tag">×</div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="profiles-container">
+            <!-- Profile 1 -->
+            <div class="profile-card">
+                <div class="profile-header">
+                    <img src="p/p1.jpg" alt="Alex Morgan" class="profile-avatar">
+                </div>
+                <div class="profile-content">
+                    <h3 class="profile-name">Alex Morgan</h3>
+                    <p class="profile-bio">UX designer and music producer with a passion for creating intuitive digital experiences. Always looking to collaborate on creative projects.</p>
+                    <div class="profile-interests">
+                        <span class="profile-interest">Technology</span>
+                        <span class="profile-interest">Art & Design</span>
+                        <span class="profile-interest">Music</span>
+                    </div>
+                    <button class="connect-button">Connect</button>
+                    <button class="chat-button" onclick="openChat('Alex Morgan')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                        Message
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Profile 2 -->
+            <div class="profile-card">
+                <div class="profile-header">
+                    <img src="p/p2.jpg" alt="Jamie Lee" class="profile-avatar">
+                </div>
+                <div class="profile-content">
+                    <h3 class="profile-name">Jamie Lee</h3>
+                    <p class="profile-bio">Frontend developer specializing in React and UI animations. Electronic music enthusiast and amateur DJ looking to connect with fellow tech creatives.</p>
+                    <div class="profile-interests">
+                        <span class="profile-interest">Technology</span>
+                        <span class="profile-interest">Music</span>
+                        <span class="profile-interest">Art & Design</span>
+                    </div>
+                    <button class="connect-button">Connect</button>
+                    <button class="chat-button" onclick="openChat('Jamie Lee')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                        Message
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Profile 3 -->
+            <div class="profile-card">
+                <div class="profile-header">
+                    <img src="p/p3.jpg" alt="Taylor Kim" class="profile-avatar">
+                </div>
+                <div class="profile-content">
+                    <h3 class="profile-name">Taylor Kim</h3>
+                    <p class="profile-bio">Graphic designer and illustrator with a background in digital art. Currently exploring AI art generation tools and looking for tech-savvy creatives.</p>
+                    <div class="profile-interests">
+                        <span class="profile-interest">Art & Design</span>
+                        <span class="profile-interest">Technology</span>
+                        <span class="profile-interest">Business</span>
+                    </div>
+                    <button class="connect-button">Connect</button>
+                    <button class="chat-button" onclick="openChat('Taylor Kim')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                        Message
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Profile 4 -->
+            <div class="profile-card">
+                <div class="profile-header">
+                    <img src="p/p5.jpg" alt="Jordan Rivers" class="profile-avatar">
+                </div>
+                <div class="profile-content">
+                    <h3 class="profile-name">Jordan Rivers</h3>
+                    <p class="profile-bio">Music producer and sound engineer with a love for creating immersive audio experiences. Looking to collaborate with tech innovators and visual artists.</p>
+                    <div class="profile-interests">
+                        <span class="profile-interest">Music</span>
+                        <span class="profile-interest">Technology</span>
+                        <span class="profile-interest">Art & Design</span>
+                    </div>
+                    <button class="connect-button">Connect</button>
+                    <button class="chat-button" onclick="openChat('Jordan Rivers')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                        Message
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Profile 5 -->
+            <div class="profile-card">
+                <div class="profile-header">
+                    <img src="p/p6.jpg" alt="Casey Zhang" class="profile-avatar">
+                </div>
+                <div class="profile-content">
+                    <h3 class="profile-name">Casey Zhang</h3>
+                    <p class="profile-bio">Software engineer and electronic music composer. Passionate about synthesizers, coding generative music, and building creative tech tools.</p>
+                    <div class="profile-interests">
+                        <span class="profile-interest">Technology</span>
+                        <span class="profile-interest">Music</span>
+                        <span class="profile-interest">Fitness</span>
+                    </div>
+                    <button class="connect-button">Connect</button>
+                    <button class="chat-button" onclick="openChat('Casey Zhang')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                        Message
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Profile 6 -->
+            <div class="profile-card">
+                <div class="profile-header">
+                    <img src="p/p4.jpg" alt="Riley Patel" class="profile-avatar">
+                </div>
+                <div class="profile-content">
+                    <h3 class="profile-name">Riley Patel</h3>
+                    <p class="profile-bio">Digital artist and UI designer with expertise in animation and interactive experiences. Looking to connect with tech-forward creatives.</p>
+                    <div class="profile-interests">
+                        <span class="profile-interest">Art & Design</span>
+                        <span class="profile-interest">Technology</span>
+                        <span class="profile-interest">Travel</span>
+                    </div>
+                    <button class="connect-button">Connect</button>
+                    <button class="chat-button" onclick="openChat('Riley Patel')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                        Message
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Chat Modal -->
+    <div class="chat-modal" id="chatModal">
+        <div class="chat-header">
+            <div class="chat-title">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+                <span id="chatName">Chat with Alex</span>
+            </div>
+            <button class="chat-close" onclick="closeChatModal()">×</button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <!-- Messages will be dynamically added here -->
+        </div>
+        <div class="chat-input">
+            <input type="text" placeholder="Type a message..." id="messageInput">
+            <button onclick="sendMessage()">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+            </button>
+        </div>
+    </div>
+    
+    <footer>
+        <p>© 2025 Passion Hub. Connect, Thrive, Grow Together.</p>
+    </footer>
+    
+    <script>
+        // Chat functionality
+        let currentChatPartner = '';
+        
+        function toggleChatModal() {
+            const modal = document.getElementById('chatModal');
+            if (modal.style.display === 'block') {
+                modal.style.display = 'none';
+            } else {
+                openChat('Support');
+            }
+        }
+        
+        function openChat(name) {
+            currentChatPartner = name;
+            document.getElementById('chatName').textContent = 'Chat with ' + name;
+            document.getElementById('chatModal').style.display = 'block';
+            document.getElementById('chatMessages').innerHTML = '';
+            
+            // Add welcome message
+            const welcomeMessage = document.createElement('div');
+            welcomeMessage.className = 'message message-received';
+            welcomeMessage.innerHTML = `<div class="message-content">Hi there! I'm ${name}. How can we connect based on our shared interests?</div>`;
+            document.getElementById('chatMessages').appendChild(welcomeMessage);
+        }
+        
+        function closeChatModal() {
+            document.getElementById('chatModal').style.display = 'none';
+        }
+        
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            if (message === '') return;
+            
+            // Add user message
+            const userMessage = document.createElement('div');
+            userMessage.className = 'message message-sent';
+            userMessage.innerHTML = `<div class="message-content">${message}</div>`;
+            document.getElementById('chatMessages').appendChild(userMessage);
+            
+            // Clear input
+            input.value = '';
+            
+            // Scroll to bottom
+            const chatMessages = document.getElementById('chatMessages');
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            
+            // Simulate response after 1 second
+            setTimeout(() => {
+                const responses = [
+                    `I see you're also interested in technology! What kind of projects are you working on?`,
+                    `I'd love to collaborate on something creative together! Do you have any ideas?`,
+                    `That sounds fascinating! Would you like to connect and discuss it further?`,
+                    `I've been looking for someone with your interests! How long have you been into this?`
+                ];
+                
+                const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                const responseMessage = document.createElement('div');
+                responseMessage.className = 'message message-received';
+                responseMessage.innerHTML = `<div class="message-content">${randomResponse}</div>`;
+                document.getElementById('chatMessages').appendChild(responseMessage);
+                
+                // Scroll to bottom again
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 1000);
+        }
+        
+        // Allow sending message with Enter key
+        document.getElementById('messageInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>
